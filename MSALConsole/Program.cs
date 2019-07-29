@@ -2,6 +2,7 @@
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Net.Http;
 using System.Security;
@@ -16,6 +17,7 @@ using System.Xml.Linq;
 
 namespace MSALConsole
 {
+    //This example illustrated the use of MSAL with a Public Client (similar to a Native app) and a Confidential Client
     class Program
     {
 
@@ -26,30 +28,32 @@ namespace MSALConsole
         // Registered app at: apps.dev.microsoft.com or your B2C tenant,
         //static string[] _scopes = new string[] { "user.read" };
 
-        //static string _publicClientId = "26db6f21-ae94-49fd-86a1-49f873aa0fb4";
-        //static string _publicClientRedirectURI = "msal26db6f21-ae94-49fd-86a1-49f873aa0fb4://auth";
+        //static string _publicClientId = "clientID";
+        //static string _publicClientRedirectURI = "msalID://auth";
 
-        //static string _confidentialClientId = "52a3749f-4a89-456c-b762-e2bdb0216ecc";
-        //static string _confidentialClientSecret = "qaxaDLJ39)uxuLHOP193[!^";
-        //static string _confidentialClientRedirecURI = "msal52a3749f-4a89-456c-b762-e2bdb0216ecc://auth";
+        //static string _confidentialClientId = "clientID";
+        //static string _confidentialClientSecret = "client secret";
+        //static string _confidentialClientRedirecURI = "msalID://auth";
 
         // Registered app in AAD
         // Note /common - means any org or MSA (default)
         //      /organizations - means orgs only
-        static string _authority = "https://login.microsoftonline.com/modernauthn.onmicrosoft.com";
+        static string _authority = "https://login.microsoftonline.com/tenant.onmicrosoft.com";
 
-        static string _apiResourceId = "https://demoapi";
+        static string _apiResourceId = "https://apiURL";
 
         static string[] _apiGraphScopes = new string[] { "https://graph.microsoft.com/User.Read" };
 
-        static string _publicClientId = "bee47179-c28d-4d1f-9607-da934eabb5da";
+        static string _publicClientId = "clientID"; //as provided during registration
         static string[] _publicClientScopes = new string[] { _apiResourceId + "/reader" };
 
-        static string _confidentialClientId = "46ed8e59-07c5-4539-9cbb-54a04834df4d";
-        static string _confidentialClientSecret = "PDbD38vpnTJh7pFoUKdcDS3sJBfXk2MmrrpiUQitTvg=";
-        static string _confidentialClientReplyUrl = "https://confidentialclient";
+        static string _confidentialClientId = "clientID"; //as provided during registration
+        static string _confidentialClientSecret = "clientsecret"; //generated for this client app in AAD
+        static string _confidentialClientReplyUrl = "https://confidentialclient"; //sample reply url give to AAD during registration
 
-        static string _userName = "user1@modernauth.onmicrosoft.com";
+
+        //to test this sample create a user in your tenant for instance:
+        static string _userName = "user@tenant.onmicrosoft.com";
 
         static void Main(string[] args)
         {
